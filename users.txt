@@ -1,0 +1,2 @@
+id,email,username,password_hash
+1,lansuru@gmail.com,lansuru,pbkdf2:sha256:260000$Jh30bcaJ7laXxc6Y$7415d37e6f05b30cf2537b553c6414d735ca7f7765b148409223612922d1bfe0

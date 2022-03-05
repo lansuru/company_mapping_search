@@ -1,0 +1,41 @@
+
+body {
+font-size: 16px;
+overflow-y: scroll;
+}
+
+.page-header,
+.page-header h1,
+h2,
+h3 {
+margin-top: 5px;
+}
+
+.navbar .navbar-brand,
+.navbar .navbar-nav ,
+.navbar .navbar-nav .dropdown-menu {
+font-size: 16px;
+}
+
+
+
+@media only screen and (min-width: 768px) {
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+}
+
+#top-table {
+margin-bottom: 5px;
+}
+#dashed-hr {
+border-top: dotted 1px;
+margin-top: 5px;
+margin-bottom: 5px;
+}
+#note-no-results {
+padding-left: 8px;
+}
+#note-hidden-results {
+padding-left: 8px;
+}

@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+
+{% block title %}Company Code Mapping Search{% endblock %}
+
+{% block page_content %}
+<div class="page-header">
+  <h1>Company Code Mapping Search</h1>
+</div>
+
+<div class="table" id="top-table">
+  <div class="row">
+    <div class="form-group col-md-5">
+      <input type="text" id="search-input" class="form-control input-lg" autocomplete="off" name="input" placeholder="Search ..." autofocus>
+    </div>
+    <div class="form-group col-md-7">
+      <div id="search-mode">
+        <strong>Search in:&nbsp;</strong>
+        <label class="radio-inline">
+          <input type="radio" name="searchModeBtn" value="legacy" checked="checked">Legacy Codes
+        </label>
+        <label class="radio-inline">
+          <input type="radio" name="searchModeBtn" value="new">New Codes
+        </label>
+        <label class="radio-inline">
+          <input type="radio" name="searchModeBtn" value="either">Both
+        </label>
+      </div>
+
+      <hr id="dashed-hr">
+
+      <p>
+        <strong>Note:</strong> Type <code>^123</code> means company codes must start with 123 <br>
+        &emsp;&emsp;&ensp;&nbsp;Type <code>123$</code> means company codes must end with 123 <br>
+        &emsp;&emsp;&ensp;&nbsp;Press <kbd>ESC</kbd> key to start new search
+      </p>
+    </div>
+  </div>
+</div>
+
+<table class="table table-hover" id="mapping-table" style="width: 40%;">
+  <colgroup>
+    <col span="1" style="width: 50%;">
+    <col span="1" style="width: 50%;">
+  </colgroup>
+
+  <thead>
+    <tr>
+      <th>Legacy Codes</th>
+      <th>New Codes</th>
+    </tr>
+  </thead>
+
+  <tbody>
+{%- for ab in mapping_list %}
+  {%- if loop.index <= max_num_results %}
+    <tr>
+  {%- else %}
+    <tr style="display: none">
+  {%- endif %}
+      <td>{{ ab[0] }}</td>
+      <td>{{ ab[1] }}</td>
+    </tr>
+{%- endfor %}
+  </tbody>
+</table>
+
+<p id="note-no-results"></p>
+<p id="note-hidden-results"><em>Only showing
+  {{ max_num_results }} results by default. <button class="btn btn-default"
+    id="show-all">Click here to show all.</button></em></p>
+{%- endblock %}
