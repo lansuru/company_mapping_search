@@ -12,18 +12,22 @@
     <div class="form-group col-md-5">
       <input type="text" id="search-input" class="form-control input-lg" autocomplete="off" name="input" placeholder="Search ..." autofocus>
     </div>
+
     <div class="form-group col-md-7">
       <div id="search-mode">
         <strong>Search in:&nbsp;</strong>
-        <label class="radio-inline">
-          <input type="radio" name="searchModeBtn" value="legacy" checked="checked">Legacy Codes
-        </label>
-        <label class="radio-inline">
-          <input type="radio" name="searchModeBtn" value="new">New Codes
-        </label>
-        <label class="radio-inline">
-          <input type="radio" name="searchModeBtn" value="either">Both
-        </label>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="searchModeBtn" id="radiobtnlegacy" value="legacy" checked="checked">
+          <label class="form-check-label" for="radiobtnlegacy">Legacy Codes</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="searchModeBtn" id="radiobtnnew" value="new">
+          <label class="form-check-label" for="radiobtnnew">New Codes</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="searchModeBtn" id="radiobtnboth" value="either">
+          <label class="form-check-label" for="radiobtnboth">Both</label>
+        </div>
       </div>
 
       <hr id="dashed-hr">
@@ -67,5 +71,5 @@
 <p id="note-no-results"></p>
 <p id="note-hidden-results"><em>Only showing
   {{ max_num_results }} results by default. <button class="btn btn-default"
-    id="show-all">Click here to show all.</button></em></p>
+    id="show-all">Click here to show all</button></em></p>
 {%- endblock %}

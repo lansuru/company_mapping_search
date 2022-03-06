@@ -1,5 +1,4 @@
 from flask import Flask, render_template, redirect, flash, request, url_for
-from flask_bootstrap import Bootstrap
 import os
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, BooleanField, SubmitField
@@ -7,6 +6,7 @@ from wtforms.validators import DataRequired, Length, Email
 from flask_login import login_user, logout_user, login_required, LoginManager, UserMixin
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import check_password_hash
+from flask_bootstrap import Bootstrap
 
 
 app = Flask(__name__)
@@ -17,12 +17,12 @@ DATABASE_PASSWORD = os.environ.get('DATABASE_PASSWORD')
 DATABASE_SERVER = os.environ.get('DATABASE_SERVER') or 'localhost'
 
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY') or os.urandom(24).hex()
-app.config['BOOTSTRAP_SERVE_LOCAL'] = True
 app.config['SQLALCHEMY_DATABASE_URI'] = \
     'postgresql+psycopg2://' + DATABASE_USER + ':' + \
     DATABASE_PASSWORD + '@' + DATABASE_SERVER + '/mapping_db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
+
 
 class Mapping(db.Model):
     __tablename__ = 'codemapping'
@@ -41,6 +41,7 @@ class User(UserMixin, db.Model):
 
     def __repr__(self):
         return '<User %r>' % self.username
+
 
 login_manager = LoginManager()
 login_manager.login_view = 'login'
@@ -61,6 +62,7 @@ class LoginForm(FlaskForm):
     password = PasswordField('Password', validators=[DataRequired()])
     remember_me = BooleanField('Keep me signed in')
     submit = SubmitField('Sign In')
+
 
 @app.shell_context_processor
 def make_shell_context():
