@@ -7,19 +7,16 @@ from flask_login import login_user, logout_user, login_required, LoginManager, U
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import check_password_hash
 from flask_bootstrap import Bootstrap
+from dotenv import load_dotenv
 
+basedir = os.path.abspath(os.path.dirname(__file__))
+load_dotenv(os.path.join(basedir, '.env'))
 
 app = Flask(__name__)
 bootstrap = Bootstrap(app)
 
-DATABASE_USER = os.environ.get('DATABASE_USER')
-DATABASE_PASSWORD = os.environ.get('DATABASE_PASSWORD')
-DATABASE_SERVER = os.environ.get('DATABASE_SERVER') or 'localhost'
-
-app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY') or os.urandom(24).hex()
-app.config['SQLALCHEMY_DATABASE_URI'] = \
-    'postgresql+psycopg2://' + DATABASE_USER + ':' + \
-    DATABASE_PASSWORD + '@' + DATABASE_SERVER + '/mapping_db'
+app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
